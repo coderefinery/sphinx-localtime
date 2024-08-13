@@ -3,16 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Test documentation
-==================
+Tests of sphinx-localtimezone
+=============================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+Tests of sphinx-localtimezone
 
-:local-timezone:`13 Aug 2024 10:00:00 +03:00`
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
+* +03:00 tz offset: :local-timezone:`13 Aug 2024 10:00:00 +03:00`
+* EEST tz: :local-timezone:`13 Aug 2024 10:00:00 EEST`
