@@ -17,6 +17,10 @@ Test of invalid:
 
 * :local-timezone:`This is an invalid time`
 
+Repeat of one of the above (for use in testing non-HTML formats):
+
+* ``13 Aug 2024 10:00:00 +03:00``: :local-timezone:`13 Aug 2024 10:00:00 +03:00`
+
 
 Other pages
 -----------

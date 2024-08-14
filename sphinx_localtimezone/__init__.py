@@ -62,7 +62,7 @@ def ltz_role(name, rawtext, text, lineno, inliner,
 """
     html_node = nodes.raw("", js, format='html')
 
-    abbrev_options = {'explanation': f'This is your detected local time converted from {text}'}
+    abbrev_options = {'explanation': f'This is your detected local time converted from {text.strip()}'}
     abbrev = LocalTimezoneNode(rawtext, "", classes=['local-timezone'], **abbrev_options)
     abbrev.children.append(html_node)
 
