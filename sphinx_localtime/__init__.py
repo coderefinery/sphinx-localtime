@@ -27,7 +27,7 @@ class LocalTimeNode(nodes.abbreviation):
 
 
 # pylint: disable=unused-argument
-def ltz_role(name, rawtext, text, lineno, inliner,
+def localtime_role(name, rawtext, text, lineno, inliner,
              options=None, content=None, hovertext=None):
     """Docutils role to insert local timezones"""
     # I don't know if there is a better way to automatically detect any
@@ -71,12 +71,12 @@ def ltz_role(name, rawtext, text, lineno, inliner,
 
 
 
-def ltz_role_althovertext(*args, **kwargs):
+def localtime_role_althovertext(*args, **kwargs):
     """A version of the role that has a minimal hovertext.
 
     This is designed for a minimal hovertext that doesn't show the original
     date."""
-    return ltz_role(*args, hovertext="Automatically detected by your browser", **kwargs)
+    return localtime_role(*args, hovertext="Automatically detected by your browser", **kwargs)
 
 
 
@@ -116,8 +116,8 @@ JS_BODY = {
 def setup(app):
 
     #app.add_node(LocalTimezoneNode, html=(visit_lt_html, depart_lt_html))
-    app.add_role('localtime', ltz_role)
-    app.add_role('localtime2', ltz_role_althovertext)
+    app.add_role('localtime', localtime_role)
+    app.add_role('localtime2', localtime_role_althovertext)
     for jsfile, integrity in JAVASCRIPT_FILES.items():
         app.add_js_file(jsfile, integrity=integrity, crossorigin="anonymous")
     for jsbody in JS_BODY:
