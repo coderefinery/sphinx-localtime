@@ -83,27 +83,35 @@ def remove_scripts_if_not_needed(app, pagename, templatename, context, doctree):
         # Remove thebe JS files
         new_script_files = []
         for ii in context["script_files"]:
-            if ii.filename in [
-                "https://cdn.jsdelivr.net/npm/dayjs@1.11.7/dayjs.min.js",
-                "https://cdn.jsdelivr.net/npm/dayjs@1.11.7/plugin/utc.js"]:
+            if ii.filename in JAVASCRIPT_FILES:
                 continue
-            if ii.attributes.get('body', '') == 'dayjs.extend(window.dayjs_plugin_utc)':
+            if ii.attributes.get('body', '') in JS_BODY:
                 continue
             new_script_files.append(ii)
         context["script_files"] = new_script_files
+
+
+JAVASCRIPT_FILES = {
+    "https://cdn.jsdelivr.net/npm/dayjs@1.11.7/dayjs.min.js": "sha256-EfJOqCcshFS/2TxhArURu3Wn8b/XDA4fbPWKSwZ+1B8=",
+    "https://cdn.jsdelivr.net/npm/dayjs@1.11.7/plugin/utc.js": "sha256-qDfIIxqpRhYWa543p6AHZ323xT3B8O6iLZFUAWtEQJw=",
+    "https://cdn.jsdelivr.net/npm/dayjs@1.11.7/plugin/advancedFormat.js": "sha256-b5ymCcSvYPKgMDPnLexXFPT457JAOBk0BA9UegKCRj8=",
+    "https://cdn.jsdelivr.net/npm/dayjs@1.11.7/plugin/timezone.js": "sha256-BM6DY5CUw78IJCgJ5v246oz4tD7ON4r7gmV3AzuzvBY=",
+    }
+JS_BODY = {
+    "dayjs.extend(window.dayjs_plugin_utc)",
+    "dayjs.extend(window.dayjs_plugin_advancedFormat)",
+    "dayjs.extend(window.dayjs_plugin_timezone)",
+    }
 
 
 def setup(app):
 
     #app.add_node(LocalTimezoneNode, html=(visit_lt_html, depart_lt_html))
     app.add_role('localtime', ltz_role)
-    app.add_js_file("https://cdn.jsdelivr.net/npm/dayjs@1.11.7/dayjs.min.js",
-                    integrity="sha256-EfJOqCcshFS/2TxhArURu3Wn8b/XDA4fbPWKSwZ+1B8=",
-                    crossorigin="anonymous")
-    app.add_js_file("https://cdn.jsdelivr.net/npm/dayjs@1.11.7/plugin/utc.js",
-                    integrity="sha256-qDfIIxqpRhYWa543p6AHZ323xT3B8O6iLZFUAWtEQJw=",
-                    crossorigin="anonymous")
-    app.add_js_file(None, body='dayjs.extend(window.dayjs_plugin_utc)')
+    for jsfile, integrity in JAVASCRIPT_FILES.items():
+        app.add_js_file(jsfile, integrity=integrity, crossorigin="anonymous")
+    for jsbody in JS_BODY:
+        app.add_js_file(None, body=jsbody)
     # Remove unneeded scripts files
     app.connect('html-page-context', remove_scripts_if_not_needed)
 
