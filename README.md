@@ -4,7 +4,7 @@ This allows you to define a time with a timezone, and HTML renders
 will show it converted to the apparent local timezone, with a tooltip
 with the original time.
 
-Hot it works:
+How it works:
 
 * The role contains a date and optional format:
 
@@ -58,6 +58,8 @@ Rendered:
 
 # Status and development
 
-Non-HTML may not work.
+Non-HTML builders work but don't give the most useful output.  The
+javascript could be embedded so that it's not an external resource.
+The name could be still changed.
 
 Beta and contributions welcome.
