@@ -66,13 +66,11 @@ def localtime_role(name, rawtext, text, lineno, inliner,
     # There must be a better way than embedding this everywhere.  Also this
     # only works for HTML which isn't very Sphinx-like.  It should become a
     # node and then the node inserts whatever is appropriate for the builder.
-    js = f"""\
-  <script>
+    js = f"""<script>
     dayjs.extend(window.dayjs_plugin_utc);
     var ts = dayjs("{ dt_utc.strftime("%Y-%m-%dT%H:%M:%SZ") }").utc();
     document.write(ts.local().format('{time_format}'));
-  </script>
-"""
+  </script>"""
     html_node = nodes.raw("", js, format='html')
 
     abbrev_options = {'explanation': hovertext or f'This is your detected local time converted from {text.strip()}'}
