@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tests of sphinx-localtime &#8212; Test  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=c058f7c8" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script crossorigin="anonymous" integrity="sha256-EfJOqCcshFS/2TxhArURu3Wn8b/XDA4fbPWKSwZ+1B8=" src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/dayjs.min.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-qDfIIxqpRhYWa543p6AHZ323xT3B8O6iLZFUAWtEQJw=" src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/plugin/utc.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-b5ymCcSvYPKgMDPnLexXFPT457JAOBk0BA9UegKCRj8=" src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/plugin/advancedFormat.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-BM6DY5CUw78IJCgJ5v246oz4tD7ON4r7gmV3AzuzvBY=" src="https://cdn.jsdelivr.net/npm/dayjs@1.11.7/plugin/timezone.js"></script>
+    <script>dayjs.extend(window.dayjs_plugin_advancedFormat)</script>
+    <script>dayjs.extend(window.dayjs_plugin_timezone)</script>
+    <script>dayjs.extend(window.dayjs_plugin_utc)</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="This page has no content" href="empty.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="tests-of-sphinx-localtime">
+<h1>Tests of sphinx-localtime<a class="headerlink" href="#tests-of-sphinx-localtime" title="Link to this heading">¶</a></h1>
+<p>Tests of sphinx-localtime:</p>
+<section id="localtime">
+<h2>localtime<a class="headerlink" href="#localtime" title="Link to this heading">¶</a></h2>
+<p>The <cite>localtime</cite> role:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">13</span> <span class="pre">Aug</span> <span class="pre">2024</span> <span class="pre">10:00:00</span> <span class="pre">+03:00</span></code>: <abbr class="localtime" title="This is your detected local time converted from 13 Aug 2024 10:00:00 +03:00"><script>
+    dayjs.extend(window.dayjs_plugin_utc);
+    var ts = dayjs("2024-08-13T07:00:00Z").utc();
+    document.write(ts.local().format('HH:mm'));
+  </script></abbr>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">13</span> <span class="pre">Aug</span> <span class="pre">2024</span> <span class="pre">10:00:00</span> <span class="pre">+03:00</span></code>: <abbr class="localtime" title="This is your detected local time converted from 13 Aug 2024 10:00:00 +03:00"><script>
+    dayjs.extend(window.dayjs_plugin_utc);
+    var ts = dayjs("2024-08-13T07:00:00Z").utc();
+    document.write(ts.local().format('HH:mm'));
+  </script></abbr>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">13</span> <span class="pre">Aug</span> <span class="pre">2024</span> <span class="pre">10:00:00</span> <span class="pre">+03:00</span> <span class="pre">(D</span> <span class="pre">MMM</span> <span class="pre">HH:mm)</span></code>: <abbr class="localtime" title="This is your detected local time converted from 13 Aug 2024 10:00:00 +03:00"><script>
+    dayjs.extend(window.dayjs_plugin_utc);
+    var ts = dayjs("2024-08-13T07:00:00Z").utc();
+    document.write(ts.local().format('D MMM HH:mm'));
+  </script></abbr></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">13</span> <span class="pre">Aug</span> <span class="pre">2024</span> <span class="pre">10:00:00</span> <span class="pre">+03:00</span> <span class="pre">(HH:mm</span> <span class="pre">z)</span></code>: <abbr class="localtime" title="This is your detected local time converted from 13 Aug 2024 10:00:00 +03:00"><script>
+    dayjs.extend(window.dayjs_plugin_utc);
+    var ts = dayjs("2024-08-13T07:00:00Z").utc();
+    document.write(ts.local().format('HH:mm z'));
+  </script></abbr></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">13</span> <span class="pre">Aug</span> <span class="pre">2024</span> <span class="pre">10:00:00</span> <span class="pre">+03:00</span> <span class="pre">(HH:mm</span> <span class="pre">zzz)</span></code>: <abbr class="localtime" title="This is your detected local time converted from 13 Aug 2024 10:00:00 +03:00"><script>
+    dayjs.extend(window.dayjs_plugin_utc);
+    var ts = dayjs("2024-08-13T07:00:00Z").utc();
+    document.write(ts.local().format('HH:mm zzz'));
+  </script></abbr></p></li>
+</ul>
+</section>
+<section id="localtime2">
+<h2>localtime2<a class="headerlink" href="#localtime2" title="Link to this heading">¶</a></h2>
+<p>The <cite>localtime2</cite> role has a different hover text and is designed for
+showing the timezone without a date.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">13</span> <span class="pre">Aug</span> <span class="pre">2024</span> <span class="pre">(zzz)</span></code>: Your detected timezone
+is <abbr class="localtime" title="Automatically detected by your browser"><script>
+    dayjs.extend(window.dayjs_plugin_utc);
+    var ts = dayjs("2024-08-13T00:00:00Z").utc();
+    document.write(ts.local().format('zzz'));
+  </script></abbr></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">13</span> <span class="pre">Aug</span> <span class="pre">2024</span> <span class="pre">(z)</span></code>: Your detected timezone
+is <abbr class="localtime" title="Automatically detected by your browser"><script>
+    dayjs.extend(window.dayjs_plugin_utc);
+    var ts = dayjs("2024-08-13T00:00:00Z").utc();
+    document.write(ts.local().format('z'));
+  </script></abbr></p></li>
+</ul>
+</section>
+<section id="test-of-invalid-format">
+<h2>Test of invalid format<a class="headerlink" href="#test-of-invalid-format" title="Link to this heading">¶</a></h2>
+<ul>
+<li><p>:localtime:`This is an invalid time`</p>
+<p>Could not parse date This is an invalid time, lineno=42, msg=Unknown string format: This is an invalid time</p>
+</li>
+</ul>
+</section>
+<section id="test-of-timezones-detection">
+<h2>Test of timezones detection<a class="headerlink" href="#test-of-timezones-detection" title="Link to this heading">¶</a></h2>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">+03:00</span></code>: <abbr class="localtime" title="This is your detected local time converted from 10:00 +03+00"><script>
+    dayjs.extend(window.dayjs_plugin_utc);
+    var ts = dayjs("2024-08-16T10:00:00Z").utc();
+    document.write(ts.local().format('HH:mm'));
+  </script></abbr></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EET</span></code>: <abbr class="localtime" title="This is your detected local time converted from 10:00 EET"><script>
+    dayjs.extend(window.dayjs_plugin_utc);
+    var ts = dayjs("2024-08-16T08:00:00Z").utc();
+    document.write(ts.local().format('HH:mm'));
+  </script></abbr></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CET</span></code>: <abbr class="localtime" title="This is your detected local time converted from 10:00 CET"><script>
+    dayjs.extend(window.dayjs_plugin_utc);
+    var ts = dayjs("2024-08-16T09:00:00Z").utc();
+    document.write(ts.local().format('HH:mm'));
+  </script></abbr></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EST</span></code>: <abbr class="localtime" title="This is your detected local time converted from 10:00 EST"><script>
+    dayjs.extend(window.dayjs_plugin_utc);
+    var ts = dayjs("2024-08-16T15:00:00Z").utc();
+    document.write(ts.local().format('HH:mm'));
+  </script></abbr></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UTC</span></code>: <abbr class="localtime" title="This is your detected local time converted from 10:00 UTC"><script>
+    dayjs.extend(window.dayjs_plugin_utc);
+    var ts = dayjs("2024-08-16T10:00:00Z").utc();
+    document.write(ts.local().format('HH:mm'));
+  </script></abbr></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EEST</span></code>: :localtime:`10:00 EEST` (expected failure if you aren’t in
+EEST)</p>
+<p>Could not parse date 10:00 EEST, lineno=53, msg=tzname EEST identified but not understood.  Pass `tzinfos` argument in order to correctly return a timezone-aware datetime.  In a future version, this will raise an exception.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CEST</span></code>: :localtime:`10:00 CEST` (expected failure if you aren’t in
+CEST)</p>
+<p>Could not parse date 10:00 CEST, lineno=55, msg=tzname CEST identified but not understood.  Pass `tzinfos` argument in order to correctly return a timezone-aware datetime.  In a future version, this will raise an exception.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Europe/Helsinki</span></code>: :localtime:`10:00 Europe/Helsinki` (expected failure)</p>
+<p>Could not parse date 10:00 Europe/Helsinki, lineno=57, msg=Unknown string format: 10:00 Europe/Helsinki</p>
+</li>
+</ul>
+</section>
+<section id="repeat-of-one-of-the-above">
+<h2>Repeat of one of the above<a class="headerlink" href="#repeat-of-one-of-the-above" title="Link to this heading">¶</a></h2>
+<p>(for use in testing caching in non-HTML formats)</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">13</span> <span class="pre">Aug</span> <span class="pre">2024</span> <span class="pre">10:00:00</span> <span class="pre">+03:00</span></code>: <abbr class="localtime" title="This is your detected local time converted from 13 Aug 2024 10:00:00 +03:00"><script>
+    dayjs.extend(window.dayjs_plugin_utc);
+    var ts = dayjs("2024-08-13T07:00:00Z").utc();
+    document.write(ts.local().format('HH:mm'));
+  </script></abbr></p></li>
+</ul>
+</section>
+<section id="other-pages">
+<h2>Other pages<a class="headerlink" href="#other-pages" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="empty.html">This page has no content</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">Test</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="empty.html">This page has no content</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="empty.html" title="next chapter">This page has no content</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Test Author.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.0.2</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
