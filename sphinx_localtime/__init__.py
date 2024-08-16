@@ -14,8 +14,8 @@ __version__ = '0.1.0'
 TIME_FORMAT = "HH:mm"
 FORMAT_RE = re.compile(r'(.*)\((.*)\)')
 
-class LocalTimezoneNode(nodes.abbreviation):
-    classes = ['local-timezone']
+class LocalTimeNode(nodes.abbreviation):
+    classes = ['localtime']
 
 #def visit_lt_html(self, node):
 #    #self.body.append(self.starttag(node, 'math'))
@@ -63,7 +63,7 @@ def ltz_role(name, rawtext, text, lineno, inliner,
     html_node = nodes.raw("", js, format='html')
 
     abbrev_options = {'explanation': f'This is your detected local time converted from {text.strip()}'}
-    abbrev = LocalTimezoneNode(rawtext, "", classes=['local-timezone'], **abbrev_options)
+    abbrev = LocalTimeNode(rawtext, "", classes=['localtime'], **abbrev_options)
     abbrev.children.append(html_node)
 
     # Return nodes, error_messages
@@ -79,7 +79,7 @@ def remove_scripts_if_not_needed(app, pagename, templatename, context, doctree):
     if not doctree:
         return
 
-    if not doctree.traverse(LocalTimezoneNode):
+    if not doctree.traverse(LocalTimeNode):
         # Remove thebe JS files
         new_script_files = []
         for ii in context["script_files"]:
@@ -96,7 +96,7 @@ def remove_scripts_if_not_needed(app, pagename, templatename, context, doctree):
 def setup(app):
 
     #app.add_node(LocalTimezoneNode, html=(visit_lt_html, depart_lt_html))
-    app.add_role('local-timezone', ltz_role)
+    app.add_role('localtime', ltz_role)
     app.add_js_file("https://cdn.jsdelivr.net/npm/dayjs@1.11.7/dayjs.min.js",
                     integrity="sha256-EfJOqCcshFS/2TxhArURu3Wn8b/XDA4fbPWKSwZ+1B8=",
                     crossorigin="anonymous")

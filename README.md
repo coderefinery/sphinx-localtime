@@ -1,4 +1,4 @@
-# sphinx-localtimezone: automatic local timezone HTML conversion
+# sphinx-localtime: automatic local timezone HTML conversion
 
 This allows you to define a time with a timezone, and HTML renders
 will show it converted to the apparent local timezone, with a tooltip
@@ -9,8 +9,8 @@ How it works:
 * The role contains a date and optional format:
 
   ```
-  :sphinx-localtimezone:`10:00 August 8, 2024`
-  :sphinx-localtimezone:`10:00 August 8, 2024 (HH:MM)`
+  :localtime:`10:00 August 8, 2024`
+  :localtime:`10:00 August 8, 2024 (HH:MM)`
   ```
 * At build time, `python-dateutil` parses those dates and converts it
   to UTC.
@@ -22,10 +22,10 @@ How it works:
 ## Installation
 
 `pip install
-https://github.com/coderefinery/sphinx-localtimezone/archive/main.zip`
+https://github.com/coderefinery/sphinx-localtime/archive/main.zip`
 (PyPI release to come later)
 
-Add `sphinx_localtimezone` to extensions in conf.py
+Add `sphinx_localtime` to extensions in conf.py
 
 
 ## Usage
@@ -38,15 +38,15 @@ The default output format is `HH:MM`.  Note the escapes aren't
 
 ReST::
 ```
-:local-timezone:`13 Aug 2024 10:00:00 EEST`
-:local-timezone:`13 Aug 2024 10:00:00 EEST  (D MMM HH:mm)`
+:localtime:`13 Aug 2024 10:00:00 EEST`
+:localtime:`13 Aug 2024 10:00:00 EEST  (D MMM HH:mm)`
 ```
 
 MyST:
 
 ```
-{local-timezone}`13 Aug 2024 10:00:00 EEST`
-{local-timezone}`13 Aug 2024 10:00:00 EEST  (D MMM HH:mm)`
+{localtime}`13 Aug 2024 10:00:00 EEST`
+{localtime}`13 Aug 2024 10:00:00 EEST  (D MMM HH:mm)`
 ```
 
 Rendered:
