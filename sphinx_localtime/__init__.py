@@ -28,7 +28,7 @@ class LocalTimeNode(nodes.abbreviation):
 
 # pylint: disable=unused-argument
 def ltz_role(name, rawtext, text, lineno, inliner,
-             options=None, content=None):
+             options=None, content=None, hovertext=None):
     """Docutils role to insert local timezones"""
     # I don't know if there is a better way to automatically detect any
     # timezone string.
@@ -62,12 +62,21 @@ def ltz_role(name, rawtext, text, lineno, inliner,
 """
     html_node = nodes.raw("", js, format='html')
 
-    abbrev_options = {'explanation': f'This is your detected local time converted from {text.strip()}'}
+    abbrev_options = {'explanation': hovertext or f'This is your detected local time converted from {text.strip()}'}
     abbrev = LocalTimeNode(rawtext, "", classes=['localtime'], **abbrev_options)
     abbrev.children.append(html_node)
 
     # Return nodes, error_messages
     return [abbrev], []
+
+
+
+def ltz_role_althovertext(*args, **kwargs):
+    """A version of the role that has a minimal hovertext.
+
+    This is designed for a minimal hovertext that doesn't show the original
+    date."""
+    return ltz_role(*args, hovertext="Automatically detected by your browser", **kwargs)
 
 
 
@@ -108,6 +117,7 @@ def setup(app):
 
     #app.add_node(LocalTimezoneNode, html=(visit_lt_html, depart_lt_html))
     app.add_role('localtime', ltz_role)
+    app.add_role('localtime2', ltz_role_althovertext)
     for jsfile, integrity in JAVASCRIPT_FILES.items():
         app.add_js_file(jsfile, integrity=integrity, crossorigin="anonymous")
     for jsbody in JS_BODY:

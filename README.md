@@ -40,6 +40,8 @@ ReST::
 ```
 :localtime:`13 Aug 2024 10:00:00 EEST`
 :localtime:`13 Aug 2024 10:00:00 EEST  (D MMM HH:mm)`
+
+:localtime2:`13 Aug 2024  (zzz)`
 ```
 
 MyST:
@@ -47,12 +49,16 @@ MyST:
 ```
 {localtime}`13 Aug 2024 10:00:00 EEST`
 {localtime}`13 Aug 2024 10:00:00 EEST  (D MMM HH:mm)`
+
+{localtime2}`13 Aug 2024 (zzz)`
 ```
 
 Rendered:
 ```
 10:00
 13 Aug 10:00
+
+Eastern European Summer Time     # has alternative hover text without original date
 ```
 
 
