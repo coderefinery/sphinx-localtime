@@ -8,6 +8,7 @@ Tests of sphinx-localtime
 
 Tests of sphinx-localtime:
 
+
 localtime
 ---------
 
@@ -22,6 +23,7 @@ The `localtime` role:
 * ``13 Aug 2024 10:00:00 +03:00 (HH:mm zzz)``: :localtime:`13 Aug
   2024 10:00:00 +03:00 (HH:mm zzz)`
 
+
 localtime2
 ----------
 
@@ -33,10 +35,26 @@ showing the timezone without a date.
 * ``13 Aug 2024 (z)``: Your detected timezone
   is :localtime2:`13 Aug 2024 (z)`
 
+
 Test of invalid format
 ----------------------
 
 * :localtime:`This is an invalid time`
+
+
+Test of timezones detection
+---------------------------
+
+* ``+03:00``: :localtime:`10:00 +03+00`
+* ``EET``: :localtime:`10:00 EET`
+* ``CET``: :localtime:`10:00 CET`
+* ``EST``: :localtime:`10:00 EST`
+* ``UTC``: :localtime:`10:00 UTC`
+* ``EEST``: :localtime:`10:00 EEST` (expected failure if you aren't in
+  EEST)
+* ``CEST``: :localtime:`10:00 CEST` (expected failure if you aren't in
+  CEST)
+* ``Europe/Helsinki``: :localtime:`10:00 Europe/Helsinki` (expected failure)
 
 
 Repeat of one of the above

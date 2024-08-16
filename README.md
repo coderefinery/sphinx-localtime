@@ -72,14 +72,16 @@ help: please do!)
 * Using `+03:00` and similar seems safe.
 * Using long names like `Europe/Helsinki` would be good but
   `dateutil.parser.parse` doesn't recognize them.
-* Short abbreviations like `EDT`, `EEST` are would work, but we need a
-  generate a list of them all, but they aren't necessarily
-  unique. (`pytz.all_timezones_set` is a starting point but it doesn't
-  have summer times, for example).
+* Short abbreviations like `EDT`, `EEST` should work, but only for
+  some common ones, and it seems that all the summer/daylight saving
+  ones don't.  One could generate a list of all abbreviations, but
+  they aren't necessarily unique. (Anything listed in
+  `pytz.all_timezones_set` should work).
   * It *does* work for your local timezone.  So it'll act differently
     on different build hosts...
+  * Short non-summer time names are wrong when used in summer time.
 
-Currently it is safest to use `+03:00`.
+Currently it is safest to use formats such as `+03:00`.
 
 
 

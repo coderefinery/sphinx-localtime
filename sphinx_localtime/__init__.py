@@ -2,10 +2,12 @@
 """
 import collections
 import re
+import warnings
 
 import dateutil.parser
 from dateutil import tz
 from docutils import nodes
+import pytz
 from sphinx.util.docutils import SphinxRole
 
 __version__ = '0.1.0'
@@ -19,8 +21,8 @@ class LocalTimeNode(nodes.abbreviation):
 
 
 # Our logic for parsing arbitrary dates.  This is what you should improve.
-TZINFOS = collections.defaultdict(tz.gettz)
-#TZINFOS = { name: dateutil.tz.gettz(name) for name in pytz.all_timezones_set}
+#TZINFOS = collections.defaultdict(tz.gettz)
+TZINFOS = { name: pytz.timezone(name) for name in pytz.all_timezones_set}
 def parse(text):
     """Convert text string into tz-aware datetime object."""
     dt = dateutil.parser.parse(text, tzinfos=TZINFOS)
@@ -50,14 +52,16 @@ def localtime_role(name, rawtext, text, lineno, inliner,
     if m:
         text, time_format = m.group(1), m.group(2)
 
-    try:
-        dt = parse(text)
-    except ValueError:
-        msg = inliner.reporter.error(
-                f"Could not parse date {text}, lineno={lineno}"
-            )
-        prb = inliner.problematic(rawtext, rawtext, msg)
-        return [prb, msg]
+    with warnings.catch_warnings(record=True) as w:
+        warnings.simplefilter("error")
+        try:
+            dt = parse(text)
+        except (ValueError, dateutil.parser.UnknownTimezoneWarning) as e:
+            msg = inliner.reporter.error(
+                    f"Could not parse date {text}, lineno={lineno}, msg={e.args[0] % e.args[1:]}"
+                )
+            prb = inliner.problematic(rawtext, rawtext, msg)
+            return [prb, msg]
     dt_utc = dt.astimezone(tz.UTC)
     # There must be a better way than embedding this everywhere.  Also this
     # only works for HTML which isn't very Sphinx-like.  It should become a
