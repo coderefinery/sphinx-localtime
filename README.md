@@ -64,8 +64,9 @@ Eastern European Summer Time     # has alternative hover text without original d
 
 # Status and development
 
-Non-HTML builders work but don't give the most useful output.  The
-javascript could be embedded so that it's not an external resource.
-The name could be still changed.
+Non-HTML builders work but don't give the most useful output (someone
+good at Docutils/Sphinx doctrees could help here).  The javascript
+could be embedded so that it's not an external resource.  The name
+could be still changed.
 
-Beta and contributions welcome.
+Beta, contributions welcome.
