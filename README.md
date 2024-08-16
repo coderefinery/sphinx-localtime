@@ -38,8 +38,8 @@ The default output format is `HH:MM`.  Note the escapes aren't
 
 ReST::
 ```
-:localtime:`13 Aug 2024 10:00:00 EEST`
-:localtime:`13 Aug 2024 10:00:00 EEST  (D MMM HH:mm)`
+:localtime:`13 Aug 2024 10:00:00 +03:00`
+:localtime:`13 Aug 2024 10:00:00 +03:00  (D MMM HH:mm)`
 
 :localtime2:`13 Aug 2024  (zzz)`
 ```
@@ -47,8 +47,8 @@ ReST::
 MyST:
 
 ```
-{localtime}`13 Aug 2024 10:00:00 EEST`
-{localtime}`13 Aug 2024 10:00:00 EEST  (D MMM HH:mm)`
+{localtime}`13 Aug 2024 10:00:00 +03:00`
+{localtime}`13 Aug 2024 10:00:00 +03:00  (D MMM HH:mm)`
 
 {localtime2}`13 Aug 2024 (zzz)`
 ```
@@ -62,11 +62,33 @@ Eastern European Summer Time     # has alternative hover text without original d
 ```
 
 
-# Status and development
+## Specifying timezones
+
+In order for this to work, you need to specify a timezone in your
+original date in a format that `dateutil.parser.parse` can
+understand.  This seems to be harder than it looks (if anyone can
+help: please do!)
+
+* Using `+03:00` and similar seems safe.
+* Using long names like `Europe/Helsinki` would be good but
+  `dateutil.parser.parse` doesn't recognize them.
+* Short abbreviations like `EDT`, `EEST` are would work, but we need a
+  generate a list of them all, but they aren't necessarily
+  unique. (`pytz.all_timezones_set` is a starting point but it doesn't
+  have summer times, for example).
+  * It *does* work for your local timezone.  So it'll act differently
+    on different build hosts...
+
+Currently it is safest to use `+03:00`.
+
+
+
+## Status and development
 
 Non-HTML builders work but don't give the most useful output (someone
 good at Docutils/Sphinx doctrees could help here).  The javascript
-could be embedded so that it's not an external resource.  The name
-could be still changed.
+could be embedded so that it's not an external resource.  Timezone
+abbreviation lookup could be improved.  The name could be
+still changed.
 
 Beta, contributions welcome.

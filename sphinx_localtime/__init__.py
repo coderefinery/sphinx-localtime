@@ -3,7 +3,7 @@
 import collections
 import re
 
-from dateutil.parser import parse
+import dateutil.parser
 from dateutil import tz
 from docutils import nodes
 from sphinx.util.docutils import SphinxRole
@@ -16,6 +16,16 @@ FORMAT_RE = re.compile(r'(.*)\((.*)\)')
 
 class LocalTimeNode(nodes.abbreviation):
     classes = ['localtime']
+
+
+# Our logic for parsing arbitrary dates.  This is what you should improve.
+TZINFOS = collections.defaultdict(tz.gettz)
+#TZINFOS = { name: dateutil.tz.gettz(name) for name in pytz.all_timezones_set}
+def parse(text):
+    """Convert text string into tz-aware datetime object."""
+    dt = dateutil.parser.parse(text, tzinfos=TZINFOS)
+    return dt
+
 
 #def visit_lt_html(self, node):
 #    #self.body.append(self.starttag(node, 'math'))
@@ -40,9 +50,8 @@ def localtime_role(name, rawtext, text, lineno, inliner,
     if m:
         text, time_format = m.group(1), m.group(2)
 
-    tzinfos = collections.defaultdict(tz.gettz)
     try:
-        dt = parse(text, tzinfos=tzinfos)
+        dt = parse(text)
     except ValueError:
         msg = inliner.reporter.error(
                 f"Could not parse date {text}, lineno={lineno}"

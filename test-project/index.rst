@@ -14,13 +14,13 @@ localtime
 The `localtime` role:
 
 * ``13 Aug 2024 10:00:00 +03:00``: :localtime:`13 Aug 2024 10:00:00 +03:00`
-* ``13 Aug 2024 10:00:00 EEST``: :localtime:`13 Aug 2024 10:00:00 EEST`
-* ``13 Aug 2024 10:00:00 EEST (D MMM HH:mm)``: :localtime:`13 Aug
-  2024 10:00:00 EEST  (D MMM HH:mm)`
-* ``13 Aug 2024 10:00:00 EEST (HH:mm z)``: :localtime:`13 Aug
-  2024 10:00:00 EEST  (HH:mm z)`
-* ``13 Aug 2024 10:00:00 EEST (HH:mm zzz)``: :localtime:`13 Aug
-  2024 10:00:00 EEST  (HH:mm zzz)`
+* ``13 Aug 2024 10:00:00 +03:00``: :localtime:`13 Aug 2024 10:00:00 +03:00`
+* ``13 Aug 2024 10:00:00 +03:00 (D MMM HH:mm)``: :localtime:`13 Aug
+  2024 10:00:00 +03:00 (D MMM HH:mm)`
+* ``13 Aug 2024 10:00:00 +03:00 (HH:mm z)``: :localtime:`13 Aug
+  2024 10:00:00 +03:00 (HH:mm z)`
+* ``13 Aug 2024 10:00:00 +03:00 (HH:mm zzz)``: :localtime:`13 Aug
+  2024 10:00:00 +03:00 (HH:mm zzz)`
 
 localtime2
 ----------
