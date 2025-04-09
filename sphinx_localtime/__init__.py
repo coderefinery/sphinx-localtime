@@ -1,6 +1,8 @@
 """Local branding module for CodeRefinery Sphinx projects
 """
-import collections
+import base64
+import hashlib
+import os
 import re
 import warnings
 
@@ -58,10 +60,14 @@ def localtime_role(name, rawtext, text, lineno, inliner,
             dt = parse(text)
         except (ValueError, dateutil.parser.UnknownTimezoneWarning) as e:
             msg = inliner.reporter.error(
-                    f"Could not parse date {text}, lineno={lineno}, msg={e.args[0] % e.args[1:]}"
+                    f"Could not parse date '{text}', lineno={lineno}, msg={e.args[0] % e.args[1:]}"
                 )
             prb = inliner.problematic(rawtext, rawtext, msg)
             return [prb, msg]
+    #import pdb ; pdb.set_trace()
+    if dt.tzinfo is None:
+        this_tz = inliner.document.settings.env.app.config.localtime_default_tz
+        dt = dt.replace(tzinfo=this_tz)
     dt_utc = dt.astimezone(tz.UTC)
     # There must be a better way than embedding this everywhere.  Also this
     # only works for HTML which isn't very Sphinx-like.  It should become a
@@ -129,12 +135,28 @@ def setup(app):
     #app.add_node(LocalTimezoneNode, html=(visit_lt_html, depart_lt_html))
     app.add_role('localtime', localtime_role)
     app.add_role('localtime2', localtime_role_althovertext)
+    app.add_config_value('localtime_default_tz',
+                         default=None,
+                         rebuild="env",
+                         description=f"Default timezone when a timezone can't be parsed from the times.  No default.")
     for jsfile, integrity in JAVASCRIPT_FILES.items():
-        app.add_js_file(jsfile, integrity=integrity, crossorigin="anonymous")
+        jsfile = 'dayjs/'+os.path.basename(jsfile)
+        assert integrity == 'sha256-'+base64.b64encode(hashlib.sha256(open(os.path.join(os.path.dirname(__file__), '_static', jsfile), 'rb').read()).digest()).decode()
+
+        print(jsfile)
+        app.add_js_file(jsfile)#, integrity=integrity, crossorigin="anonymous")
     for jsbody in JS_BODY:
         app.add_js_file(None, body=jsbody)
+
     # Remove unneeded scripts files
     app.connect('html-page-context', remove_scripts_if_not_needed)
+
+    # Add static path
+    static_dir = os.path.join(os.path.dirname(__file__), "_static")
+    print(static_dir)
+    app.connect("builder-inited",
+        lambda app: app.config.html_static_path.insert(0, static_dir),
+    )
 
     return {
         'version': __version__,
