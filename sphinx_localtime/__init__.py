@@ -137,7 +137,8 @@ def setup(app):
     app.add_config_value('localtime_default_tz',
                          default=None,
                          rebuild="env",
-                         description=f"Default timezone when a timezone can't be parsed from the times.  No default.")
+                         #description=f"Default timezone when a timezone can't be parsed from the times.  No default."  # description is sphinx>=7.4 only
+                         )
     for jsfile, integrity in JAVASCRIPT_FILES.items():
         jsfile = 'dayjs/'+os.path.basename(jsfile)
         assert integrity == 'sha256-'+base64.b64encode(hashlib.sha256(open(os.path.join(os.path.dirname(__file__), '_static', jsfile), 'rb').read()).digest()).decode()
