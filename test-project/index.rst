@@ -28,12 +28,17 @@ localtime2
 ----------
 
 The `localtime2` role has a different hover text and is designed for
-showing the timezone without a date.
+showing the timezone without a date.  The date (and maybe time) is
+important since it gets the detected timezone at that date/time.
 
 * ``13 Aug 2024 (zzz)``: Your detected timezone
   is :localtime2:`13 Aug 2024 (zzz)`
+* ``13 Dec 2024 (zzz)``: Your detected timezone
+  is :localtime2:`13 Dec 2024 (zzz)`
 * ``13 Aug 2024 (z)``: Your detected timezone
   is :localtime2:`13 Aug 2024 (z)`
+* ``13 Dec 2024 (z)``: Your detected timezone
+  is :localtime2:`13 Dec 2024 (z)`
 
 
 Test of invalid format
