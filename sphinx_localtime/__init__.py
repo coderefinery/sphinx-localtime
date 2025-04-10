@@ -47,7 +47,7 @@ def localtime_role(name, rawtext, text, lineno, inliner,
     # I don't know if there is a better way to automatically detect any
     # timezone string.
 
-    time_format = TIME_FORMAT
+    time_format = inliner.document.settings.env.app.config.localtime_default_timeformat
     text = text.replace('\n', ' ')
     text = text.replace('\r', ' ')
     m = FORMAT_RE.match(text)
@@ -137,7 +137,12 @@ def setup(app):
     app.add_config_value('localtime_default_tz',
                          default=None,
                          rebuild="env",
-                         #description=f"Default timezone when a timezone can't be parsed from the times.  No default."  # description is sphinx>=7.4 only
+                         #description=f"Default timezone when a timezone can't be parsed from the times.  No default - it probably uses whatever is default on the build machine."  # description is sphinx>=7.4 only
+                         )
+    app.add_config_value('localtime_default_timeformat',
+                         default=TIME_FORMAT,
+                         rebuild="env",
+                         #description=f"Default time format when there isn't anything given in parentheses."  # description is sphinx>=7.4 only
                          )
     for jsfile, integrity in JAVASCRIPT_FILES.items():
         jsfile = 'dayjs/'+os.path.basename(jsfile)
