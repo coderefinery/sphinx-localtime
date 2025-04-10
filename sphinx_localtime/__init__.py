@@ -79,7 +79,7 @@ def localtime_role(name, rawtext, text, lineno, inliner,
   </script>"""
     html_node = nodes.raw("", js, format='html')
 
-    abbrev_options = {'explanation': hovertext or f'This is your detected local time converted from {text.strip()}'}
+    abbrev_options = {'explanation': hovertext or f'This is converted to your local timezone from {text.strip()}'}
     abbrev = LocalTimeNode(rawtext, "", classes=['localtime'], **abbrev_options)
     abbrev.children.append(html_node)
 
