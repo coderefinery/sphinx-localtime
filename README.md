@@ -12,8 +12,8 @@ How it works:
   :localtime:`10:00 August 8, 2024`
   :localtime:`10:00 August 8, 2024 (HH:MM)`
   ```
-* At build time, `python-dateutil` parses those dates and converts it
-  to UTC.
+* At build time (all server-side), `python-dateutil` parses those
+  dates and converts it to UTC.
 * It embeds the UTC timestamp and some javascript into the built HTML
   file.  When rendered, `dayjs` converts it to `HH:MM` or the format
   in parentheses.
