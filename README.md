@@ -8,7 +8,7 @@ How it works:
 
 * The role contains a date and optional format:
 
-  ```
+  ```rst
   :localtime:`10:00 August 8, 2024 +03:00`
   :localtime:`10:00 August 8, 2024 +03:00 (HH:mm)`
   ```
@@ -46,11 +46,10 @@ The course starts at :localtime:`13 Aug 2024 10:00:00
 ```
 
 You can show the detected timezone at a certain time with the format
-`zzz` (`localtime2` changes the hover text to be approprate to this
-use case):
+`zzz`:
 ```rst
 The times on this page are automatically converted by your
-browser into the timezone :localtime2:`13 Aug 2024 (zzz)`.
+browser into the timezone :localtime:`13 Aug 2024 (zzz)`.
 ```
 
 
@@ -60,24 +59,24 @@ browser into the timezone :localtime2:`13 Aug 2024 (zzz)`.
 The time format can be anything parsed by `dateutil.parser.parse`.  A
 parenthesized time format (in the form in
 <https://day.js.org/docs/en/display/format>) is used for the output.
-The default output format is `HH:MM`.  Note the escapes aren't
+The default output format is `HH:mm`.  Note the escapes aren't
 `printf` standard but what is used by `dayjs`.
 
 ReST::
-```
+```rst
 :localtime:`13 Aug 2024 10:00:00 +03:00`
 :localtime:`13 Aug 2024 10:00:00 +03:00  (D MMM HH:mm)`
 
-:localtime2:`13 Aug 2024  (zzz)`
+:localtime:`13 Aug 2024  (zzz)`
 ```
 
 MyST:
 
-```
+```md
 {localtime}`13 Aug 2024 10:00:00 +03:00`
 {localtime}`13 Aug 2024 10:00:00 +03:00  (D MMM HH:mm)`
 
-{localtime2}`13 Aug 2024 (zzz)`
+{localtime}`13 Aug 2024 (zzz)`
 ```
 
 Rendered:
@@ -85,7 +84,7 @@ Rendered:
 10:00
 13 Aug 10:00
 
-Eastern European Summer Time     # has alternative hover text without original date
+Eastern European Summer Time
 ```
 
 
