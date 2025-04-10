@@ -137,12 +137,12 @@ def setup(app):
     app.add_config_value('localtime_default_tz',
                          default=None,
                          rebuild="env",
-                         #description=f"Default timezone when a timezone can't be parsed from the times.  No default - it probably uses whatever is default on the build machine."  # description is sphinx>=7.4 only
+                         #description=f"Default timezone when a timezone can't be parsed from the times.  No default - it probably uses whatever is default on the build machine.  Example: import dateutil.tz ; dateutil.tz.gettz('Europe/Helsinki')"  # description is sphinx>=7.4 only
                          )
     app.add_config_value('localtime_default_timeformat',
                          default=TIME_FORMAT,
                          rebuild="env",
-                         #description=f"Default time format when there isn't anything given in parentheses."  # description is sphinx>=7.4 only
+                         #description=f"Default time format when there isn't anything given in parentheses.  Example: HH:mm (see https://day.js.org/docs/en/display/format)"  # description is sphinx>=7.4 only
                          )
     for jsfile, integrity in JAVASCRIPT_FILES.items():
         jsfile = 'dayjs/'+os.path.basename(jsfile)
