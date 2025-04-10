@@ -108,7 +108,7 @@ def remove_scripts_if_not_needed(app, pagename, templatename, context, doctree):
     if not doctree.traverse(LocalTimeNode):
         new_script_files = []
         for ii in context["script_files"]:
-            if 'dayjs/' in ii.filename:
+            if ii.filename and 'dayjs/' in ii.filename:
                 continue
             if ii.attributes.get('body', '') in JS_BODY:
                 continue
