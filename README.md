@@ -9,14 +9,15 @@ How it works:
 * The role contains a date and optional format:
 
   ```
-  :localtime:`10:00 August 8, 2024`
-  :localtime:`10:00 August 8, 2024 (HH:MM)`
+  :localtime:`10:00 August 8, 2024 +03:00`
+  :localtime:`10:00 August 8, 2024 +03:00 (HH:mm)`
   ```
 * At build time (all server-side), `python-dateutil` parses those
   dates and converts it to UTC.
 * It embeds the UTC timestamp and some javascript into the built HTML
-  file.  When rendered, `dayjs` converts it to `HH:MM` or the format
+  file.  When rendered, `dayjs` converts it to `HH:mm` or the format
   in parentheses.
+
 
 
 ## Installation
@@ -27,8 +28,9 @@ https://github.com/coderefinery/sphinx-localtime/archive/main.zip`
 
 Add `sphinx_localtime` to extensions in conf.py
 
-## Examples
 
+
+## Examples
 
 ```
 # Show time in `hh:mm`
@@ -81,12 +83,16 @@ Eastern European Summer Time     # has alternative hover text without original d
 ```
 
 
-## Specifying timezones
 
-In order for this to work, you need to specify a timezone in your
-original date in a format that `dateutil.parser.parse` can
+## Specifying timezones in the source
+
+Currently it is safest to use formats such as `+03:00`, for example
+`13 Aug 2024 10:00 +03:00`.
+
+In order for the conversion to work, you need to specify a timezone in
+your original date in a format that `dateutil.parser.parse` can
 understand.  This seems to be harder than it looks (if anyone can
-help: please do!)
+help: please do!).  What we know:
 
 * Using `+03:00` and similar seems safe.
 * Using long names like `Europe/Helsinki` would be good but
@@ -102,14 +108,24 @@ help: please do!)
 
 Currently it is safest to use formats such as `+03:00`.
 
+In conf.py you can set a default, then you don't need to add a
+timezone to every individual localtime role:
+
+```python
+import dateutil.tz
+localtime_default_tz = dateutil.tz.gettz('Europe/Helsinki')
+```
+
 
 
 ## Status and development
 
-Non-HTML builders work but don't give the most useful output (someone
-good at Docutils/Sphinx doctrees could help here).  The javascript
-could be embedded so that it's not an external resource.  Timezone
-abbreviation lookup could be improved.  The name could be
-still changed.
+Beta but being used in our own production.  Contributions welcome.
 
-Beta, contributions welcome.
+Big issues:
+
+* Non-HTML builders work but don't give the most useful output - but
+  it does show something minimally useful so people know what the time
+  is, without localtime conversion.
+* Timezone abbreviation lookup could be improved.
+* The name could be still changed.
