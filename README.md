@@ -32,19 +32,25 @@ Add `sphinx_localtime` to extensions in conf.py
 
 ## Examples
 
-```
-# Show time in `hh:mm`
+Show time in `hh:mm`:
+```rst
 The meeting is at :localtime:`13 Aug 2024 10:00:00 +03:00`.
+```
 
-# Show time as `hh:mm (on YYYY-MM-DD)`
-# [] is used to have raw text.  This is dayjs syntax.
+Show time as `hh:mm (on YYYY-MM-DD)`. `[]` is used to escape raw
+text - this is dayjs syntax:
+
+```rst
 The course starts at :localtime:`13 Aug 2024 10:00:00
 +03:00 (hh:mm [on ]YYYY-MM-DD[)])`
+```
 
-# You can show the detected timezone at a certain time:
+You can show the detected timezone at a certain time with the format
+`zzz` (`localtime2` changes the hover text to be approprate to this
+use case):
+```rst
 The times on this page are automatically converted by your
 browser into the timezone :localtime2:`13 Aug 2024 (zzz)`.
-
 ```
 
 
