@@ -18,7 +18,7 @@ classifiers = [
 requires-python = ">=3.6"
 dynamic = ["version", "description"]
 dependencies = [
-    "Sphinx",
+    "Sphinx>=4",  # Oldest version I have tested but it probably works with older
     "python-dateutil",
     "pytz",
 ]
