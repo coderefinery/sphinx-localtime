@@ -22,9 +22,7 @@ How it works:
 
 ## Installation
 
-`pip install
-https://github.com/coderefinery/sphinx-localtime/archive/main.zip`
-(PyPI release to come later)
+`pip install sphinx-localtime`
 
 Add `sphinx_localtime` to extensions in conf.py
 
@@ -133,4 +131,3 @@ Big issues:
   it does show something minimally useful so people know what the time
   is, without localtime conversion.
 * Timezone abbreviation lookup could be improved.
-* The name could be still changed.

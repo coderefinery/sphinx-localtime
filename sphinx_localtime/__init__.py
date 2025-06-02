@@ -1,4 +1,4 @@
-"""Local branding module for CodeRefinery Sphinx projects
+"""Sphinx extension to convert times to browsers local times
 """
 import base64
 import hashlib
