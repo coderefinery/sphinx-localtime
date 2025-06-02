@@ -12,7 +12,7 @@ from docutils import nodes
 import pytz
 from sphinx.util.docutils import SphinxRole
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 # Formats using https://day.js.org/docs/en/display/format
 TIME_FORMAT = "HH:mm"
